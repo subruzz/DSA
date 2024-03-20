@@ -1,6 +1,6 @@
 
 void main() {
-  String s = 'h((e)))))(world())';
+  String s = '(()';
   StackWithArray stack = StackWithArray();
   stack.balanceParanthesis(s);
 }
