@@ -22,13 +22,40 @@ void main() {
   List<int> arr = [4, 5, 2, 10, 8];
   List<int> res = [];
   Stack stack = Stack();
+  //nearest smallest to left
+
+  for (int i = 0; i < arr.length; i++) {
+    while (stack.isNotEmpty && stack.top > arr[i]) {
+      stack.pop();
+    }
+    if (stack.isEmpty) {
+      res.add(-1);
+    } else
+      res.add(stack.top);
+    // if (stack.isEmpty) {
+    //   res.add(-1);
+    // } else if (stack.top < arr[i]) {
+    //   res.add(stack.top);
+    // } else {
+    //   while (stack.isNotEmpty && stack.top > arr[i]) {
+    //     stack.pop();
+    //   }
+    //   if (stack.isEmpty)
+    //     res.add(-1);
+    //   else
+    //     res.add(stack.top);
+    // }
+    stack.push(arr[i]);
+  }
+  print(res);
+  //nearest smallest to left
   for (int i = 0; i < arr.length; i++) {
     if (stack.isEmpty) {
       res.add(-1);
-    } else if (stack.top < arr[i]) {
+    } else if (stack.top > arr[i]) {
       res.add(stack.top);
     } else {
-      while (stack.isNotEmpty && stack.top > arr[i]) {
+      while (stack.isNotEmpty && stack.top < arr[i]) {
         stack.pop();
       }
       if (stack.isEmpty)
@@ -38,44 +65,4 @@ void main() {
     }
     stack.push(arr[i]);
   }
-  // for(int i=0;i<arr.length;i++){
-  //   if(stack.isEmpty){
-  //     res.add(-1);
-  //   }
-  //   else if(stack.top>arr[i]){
-  //     res.add(stack.top);
-  //   }
-  //   else{
-  //     while(stack.isNotEmpty&&stack.top<arr[i]){
-  //       stack.pop();
-  //     }
-  //     if(stack.isEmpty)res.add(-1);
-  //     else res.add(stack.top);
-  //   }
-  //   stack.push(arr[i]);
-
-  // }
-  print(res);
-  // for (int i = arr.length - 1; i >= 0; i--) {
-  //   if (stack.isEmpty) {
-  //     res.add(-1);
-  //   } else if (stack.top > arr[i]) {
-  //     res.add(stack.top);
-  //   } else {
-
-  //     while (stack.isNotEmpty) {
-  //       c++;
-  //       print('count is $c');
-  //       if (stack.top > arr[i]) {
-  //         res.add(stack.top);
-  //         break;
-  //       }
-  //       stack.pop();
-  //     }
-  //     if (stack.isEmpty) {
-  //       res.add(-1);
-  //     }
-
-  //   }
-  //   stack.push(arr[i]);
 }

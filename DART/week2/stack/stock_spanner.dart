@@ -22,14 +22,27 @@ void main() {
   List<int> arr = [100, 80, 110, 120, 70, 75];
   Stack stack = Stack();
   List<int> res = [];
+
   for (int i = 0; i < arr.length; i++) {
-    while (stack.isNotEmpty && arr[stack.top] <= arr[i]) {
+    while (stack.isNotEmpty && arr[stack.top] < arr[i]) {
       stack.pop();
     }
-    int c = stack.isEmpty ? i + 1 : i - stack.top;
-    res.add(c);
+    if (stack.isEmpty) {
+      res.add(i + 1);
+    } else {
+      res.add(i - stack.top);
+    }
     stack.push(i);
-
   }
   print(res);
+
+  // for (int i = 0; i < arr.length; i++) {
+  //   while (stack.isNotEmpty && arr[stack.top] <= arr[i]) {
+  //     stack.pop();
+  //   }
+  //   int c = stack.isEmpty ? i + 1 : i - stack.top;
+  //   res.add(c);
+  //   stack.push(i);
+
+  // }
 }

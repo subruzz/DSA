@@ -19,7 +19,9 @@ class Stack {
       temp = temp.next;
     }
   }
-
+  void reverseStack(){
+    
+  }
   void push(int value) {
     Node node = Node(value);
     if (top == null) {
