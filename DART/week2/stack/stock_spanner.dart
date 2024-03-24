@@ -13,7 +13,7 @@ class Stack {
     }
   }
 
-  int get top => _stack.last;
+  int get top => _stack.last; 
   bool get isEmpty => _stack.isEmpty;
   bool get isNotEmpty => !isEmpty;
 }

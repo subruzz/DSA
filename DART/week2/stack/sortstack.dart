@@ -7,7 +7,7 @@ void main() {
   print('before sort');
   stack.display();
   print('after sort');
-  stack.reverse();
+  stack.reverse ();
   stack.display();
 }
 

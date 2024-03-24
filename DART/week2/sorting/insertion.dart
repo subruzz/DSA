@@ -1,6 +1,6 @@
 void main() {
   List<int> arr = [4, 2, 6, 5, 1, 3];
-  insertion(arr);
+  iSort(arr);
   print(arr);
 }
 
@@ -8,8 +8,8 @@ void iSort(List<int> arr) {
   for (int i = 1; i < arr.length; i++) {
     int temp = arr[i];
     int j = i - 1;
-    while (j>-1&&arr[j] > temp) {
-      arr[j+1] = arr[j];
+    while (j > -1 && arr[j] > temp) {
+      arr[j + 1] = arr[j];
       arr[j] = temp;
       j--;
     }
@@ -26,6 +26,18 @@ void insertion(List<int> arr) {
       } else {
         break;
       }
+    }
+  }
+}
+
+void sortI(List<int> arr) {
+  for (int i = 1; i < arr.length; i++) {
+    int j = i - 1;
+    int temp = arr[i];
+    while (j >= 0 && arr[j] > temp) {
+      arr[j + 1] = arr[j];
+      arr[j] = temp;
+      j--;
     }
   }
 }

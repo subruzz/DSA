@@ -8,11 +8,11 @@ class Queue {
   int length = 0;
   Node? start;
   Node? end;
-  Queue(int value) {
-    Node node = Node(value);
-    start = node;
-    end = node;
-    length = 1;
+  Queue() {
+    // Node node = Node(value);
+    // start = node;
+    // end = node;
+    // length = 1;
   }
   void enqueue(int value) {
     Node node = Node(value);
@@ -25,10 +25,14 @@ class Queue {
     }
   }
 
-  void dequeue() {
-    if (start == null) return;
+  int dequeue() {
+    if (start == null) {
+      throw StateError('Queue is empty');
+    }
 
     Node temp = start!;
+    int dequeuedValue = temp.value; // Store the value to return
+
     if (temp.next == null) {
       start = null;
       end = null;
@@ -36,6 +40,8 @@ class Queue {
       start = start!.next;
       temp.next = null;
     }
+
+    return dequeuedValue; // Return the dequeued value
   }
 
   void display() {
@@ -45,13 +51,44 @@ class Queue {
       temp = temp.next;
     }
   }
+
+  bool get isEmpty => start == null;
+}
+
+class Stack {
+  Queue queue1 = Queue();
+  Queue queue2 = Queue();
+
+  void push(int value) {
+    while (!queue1.isEmpty) {
+      queue2.enqueue(queue1.dequeue());
+    }
+    queue1.enqueue(value);
+    while (!queue2.isEmpty) {
+      queue1.enqueue(queue2.dequeue());
+    }
+  }
+
+  void pop() {
+    queue1.dequeue();
+  }
+
+  void display() {
+    queue1.display();
+  }
 }
 
 void main() {
-  Queue queue = Queue(1);
-  queue.enqueue(2);
-  queue.enqueue(3);
-  queue.enqueue(4);
-  queue.dequeue();
-  queue.display();
+  Stack stack = Stack();
+  stack.push(1);
+  stack.push(2);
+  stack.push(3);
+  stack.push(4);
+  stack.pop();
+  stack.display();
+  // Queue queue = Queue();
+  // queue.enqueue(2);
+  // queue.enqueue(3);
+  // queue.enqueue(4);
+  // queue.display();
 }
