@@ -16,7 +16,7 @@ class Heap {
   List<int> getHeap() {
     return List.from(heap);
   }
-
+  //log n
   void insert(int value) {
     heap.add(value);
     int current = heap.length - 1;
@@ -44,6 +44,7 @@ class Heap {
     heap[index1] = heap[index2];
     heap[index2] = temp;
   }
+  //logn
 
   int? removeFromHeap() {
     if (heap.isEmpty) return null;
