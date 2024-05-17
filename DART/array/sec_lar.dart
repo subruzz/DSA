@@ -5,8 +5,9 @@ void main() {
   for (var i in list) {
     if (i > l) {
       s = l;
-
       l = i;
+    } else if (i > s && i < l) {
+      s = i;
     }
   }
   if (s == -1) {
