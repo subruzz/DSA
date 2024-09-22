@@ -42,20 +42,8 @@ class MinHeap {
     while (true) {
       int leftIndex = leftChild(index);
       int rightIndex = rightChild(index);
-      if (leftIndex < minHeap.length &&
-          minHeap[leftIndex] < minHeap[minIndex]) {
-        minIndex = leftIndex;
-      }
-      if (rightIndex < minHeap.length &&
-          minHeap[rightIndex] < minHeap[minIndex]) {
-        minIndex = rightIndex;
-      }
-      if (minIndex != index) {
-        swap(minIndex, index);
-        index = minIndex;
-      } else {
-        break;
-      }
+         int leftIndex = leftChild(index);
+      int rightIndex = rightChild(index);
     }
   }
 

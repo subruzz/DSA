@@ -129,4 +129,5 @@ void main() {
   trie.insert('he');
   trie.insert('text');
   trie.stPrefix('he');
+  print(trie.retrieveByPrefix('he'));
 }

@@ -8,12 +8,7 @@ class LinkedList<T> {
   Node<T>? head;
   Node<T>? tail;
   int length = 0;
-  LinkedList(T value) {
-    Node<T> node = Node(value);
-    head = node;
-    tail = node;
-    length = 1;
-  }
+
   //append value to last
   void append(T value) {
     Node<T>? node = Node(value);
@@ -85,27 +80,28 @@ class LinkedList<T> {
     // print(temp.value);
   }
 
-  Node? deleteWithIndex(int index) {
+  void deletIn(int index) {
     if (head == null) return null;
-    Node<T>? temp = head;
-
     if (index == 0) {
-      head = head!.next;
-      temp!.next = null;
+      head = head?.next;
+      return;
     }
     int i = 0;
-    while (temp?.next != null && i < index - 1) {
+    Node<T>? temp = head;
+    while (i < index - 1 && temp?.next != null) {
       temp = temp?.next;
       i++;
     }
-    if (temp == null) return null;
-    if (temp == tail) {
+    if (temp == null) {
+      print('index out of range');
+      return;
+    }
+    if (temp.next == tail) {
       tail = temp;
-      tail!.next = null;
+      tail?.next = null;
     }
     temp.next = temp.next?.next;
-    // temp.next = null;
-    return temp;
+    print(tail?.value);
   }
 
   void reverse() {
@@ -246,19 +242,41 @@ class LinkedList<T> {
     if (head == null) return;
 
     Node<T>? temp = head;
-    Node<T>? last = null;
-    while (temp != null) {
-      if (temp.next?.value == value) {
+    Node<T>? last = head;
+    while (temp?.next != null) {
+      if (temp?.next?.value == value) {
         last = temp;
       }
-      temp = temp.next;
+      temp = temp?.next;
     }
-    if (last == null && head!.value == value) {
+    if (last == head && head!.value == value) {
       head = head!.next;
       return;
     }
     if (last == null) return;
     last.next = last.next?.next;
+  }
+
+  void delete(int value) {
+    if (head == null) return;
+    Node<T>? temp = head;
+    Node<T>? prev = head;
+    while (temp?.next != null && temp?.value != value) {
+      prev = temp;
+
+      temp = temp?.next;
+    }
+    if (temp == head && value == head?.value) {
+      head = head?.next;
+    } else if (temp == tail && tail?.value == value) {
+      tail = prev;
+      tail?.next = null;
+    } else {
+      prev?.next = temp?.next;
+    }
+    print(tail?.value);
+    print(head?.value);
+    print('\n\n\n');
   }
 
   void removeDuplicate() {
@@ -288,39 +306,12 @@ class LinkedList<T> {
 }
 
 void main() {
-  LinkedList linkedList = LinkedList(1);
+  LinkedList linkedList = LinkedList();
+  linkedList.append(1);
   linkedList.append(2);
   linkedList.append(3);
-  linkedList.append(142);
-  linkedList.append(512);
-
-  linkedList.append(12);
-
-  // linkedList.append(9);
-  // linkedList.append(8);
-  // linkedList.append(9);
-  // linkedList.append(2);
-  // linkedList.append(2);
-  // linkedList.append(9);
-  // linkedList.append(9);
-  // linkedList.append(2);
-  // linkedList.append(9);
-  // linkedList.append(9);
-
-  // linkedList.display();
-  linkedList.insertBeforeTwo(45, 3);
-  // print('after insert');
-  // linkedList.deleteWithIndex(3);
-  // linkedList.deleteAllNodeWithValue(12);
-  // linkedList.display();
-  // print('after reverse');
-  // linkedList.reverse();
-  // linkedList.removeDuplicate();
+  linkedList.append(4);
+  linkedList.append(3);
+  linkedList.deleteLastocc(1);
   linkedList.display();
-
-  // print('after deleting specified value');
-  // print(linkedList.deleteWithIndex(2));
-  // print(linkedList.deleteWithIndex(4));
-
-  // linkedList.display();
 }

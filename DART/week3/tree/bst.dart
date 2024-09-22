@@ -168,7 +168,7 @@ void main() {
   bst.insertR(32);
   bst.insertR(20);
   bst.insertR(10);
-  bst.insertR(25);
+  bst.rDelete(25, bst.root);
   bst.inOrder(bst.root);
   print(bst.result);
 }
